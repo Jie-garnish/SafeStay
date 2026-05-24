@@ -1,0 +1,1 @@
+console.log("SafeStay project initialized");
