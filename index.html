@@ -1,16 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SafeStay</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeStay</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
-  <h1>SafeStay</h1>
-  <p>Temporary housing transparency platform.</p>
+    <header>
+        <h1>SafeStay</h1>
+        <p>Find trustworthy short-term housing.</p>
+    </header>
 
-  <script src="script.js"></script>
+    <section class="filters">
+
+        <h2>Filter Listings</h2>
+
+        <div class="filter-group">
+
+            <label>Min Price</label>
+            <input type="number" id="minPrice">
+
+            <label>Max Price</label>
+            <input type="number" id="maxPrice">
+
+            <label>Property Type</label>
+            <select id="propertyType">
+                <option value="">Any</option>
+                <option value="entire apartment">Entire Apartment</option>
+                <option value="private room">Private Room</option>
+                <option value="shared room">Shared Room</option>
+                <option value="studio">Studio</option>
+                <option value="sublet">Sublet</option>
+            </select>
+
+            <label>Lease Length</label>
+            <select id="leaseLength">
+                <option value="">Any</option>
+                <option value="<3 months">Less than 3 Months</option>
+                <option value="3 months">3 Months</option>
+                <option value="6 months">6 Months</option>
+                <option value="1 year">1 Year</option>
+                <option value="flexible">Flexible</option>
+            </select>
+
+            <label>Bedrooms</label>
+            <select id="bedrooms">
+                <option value="">Any</option>
+                <option value="0">Studio</option>
+                <option value="1">1 Bedroom</option>
+                <option value="2">2 Bedrooms</option>
+                <option value="3">3+ Bedrooms</option>
+            </select>
+
+            <label>Bathrooms</label>
+            <select id="bathrooms">
+                <option value="">Any</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3+</option>
+            </select>
+
+            <label>Furnishing</label>
+            <select id="furnished">
+                <option value="">Any</option>
+                <option value="true">Furnished</option>
+                <option value="false">Unfurnished</option>
+            </select>
+
+            <label>Pet Policy</label>
+            <select id="pets">
+                <option value="">Any</option>
+                <option value="no pets">No Pets</option>
+                <option value="cats">Cats</option>
+                <option value="small dogs">Small Dogs</option>
+                <option value="large dogs">Large Dogs</option>
+                <option value="all pets">All Pets</option>
+            </select>
+
+            <label>Move-In Date</label>
+            <input type="date" id="moveInDate">
+
+            <button id="filterBtn">
+                Apply Filters
+            </button>
+
+        </div>
+
+    </section>
+
+    <section id="listings"></section>
+
+    <script src="script.js"></script>
+
 </body>
 </html>
