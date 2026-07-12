@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Listings | SafeStay</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🏠 SafeStay
+        </div>
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+
+            <li>
+                <a href="listings.html" class="active">
+                    Browse Listings
+                </a>
+            </li>
+
+            <li>
+                <a href="favorites.html">
+                    Saved Listings ❤️
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+    <!-- Page Header -->
+
+    <header class="page-header">
+
+        <h1>Browse Housing</h1>
+
+        <p>
+            Compare housing based on your personal needs and preferences.
+        </p>
+
+    </header>
+
+    <!-- Filters -->
+
+    <section class="filters">
+
+        <h2>Search Filters</h2>
+
+        <div class="filter-group">
+
+            <!-- Budget -->
+
+            <div>
+
+                <label>Minimum Budget</label>
+
+                <input
+                    type="number"
+                    id="minPrice"
+                    placeholder="$800">
+
+            </div>
+
+            <div>
+
+                <label>Maximum Budget</label>
+
+                <input
+                    type="number"
+                    id="maxPrice"
+                    placeholder="$2000">
+
+            </div>
+
+            <!-- Property -->
+
+            <div>
+
+                <label>Property Type</label>
+
+                <select id="propertyType">
+
+                    <option value="">Any</option>
+
+                    <option value="entire apartment">
+                        Entire Apartment
+                    </option>
+
+                    <option value="private room">
+                        Private Room
+                    </option>
+
+                    <option value="shared room">
+                        Shared Room
+                    </option>
+
+                    <option value="studio">
+                        Studio
+                    </option>
+
+                    <option value="sublet">
+                        Sublet
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- Lease -->
+
+            <div>
+
+                <label>Lease Length</label>
+
+                <select id="leaseLength">
+
+                    <option value="">Any</option>
+
+                    <option value="<3 months">
+                        Less than 3 Months
+                    </option>
+
+                    <option value="3 months">
+                        3 Months
+                    </option>
+
+                    <option value="6 months">
+                        6 Months
+                    </option>
+
+                    <option value="1 year">
+                        1 Year
+                    </option>
+
+                    <option value="flexible">
+                        Flexible
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- Bedrooms -->
+
+            <div>
+
+                <label>Bedrooms</label>
+
+                <select id="bedrooms">
+
+                    <option value="">Any</option>
+
+                    <option value="0">Studio</option>
+
+                    <option value="1">1 Bedroom</option>
+
+                    <option value="2">2 Bedrooms</option>
+
+                    <option value="3">3+ Bedrooms</option>
+
+                </select>
+
+            </div>
+
+            <!-- Bathrooms -->
+
+            <div>
+
+                <label>Bathrooms</label>
+
+                <select id="bathrooms">
+
+                    <option value="">Any</option>
+
+                    <option value="1">1</option>
+
+                    <option value="2">2</option>
+
+                    <option value="3">3+</option>
+
+                </select>
+
+            </div>
+
+            <!-- Furnishing -->
+
+            <div>
+
+                <label>Furnishing</label>
+
+                <select id="furnished">
+
+                    <option value="">Any</option>
+
+                    <option value="true">
+                        Furnished
+                    </option>
+
+                    <option value="false">
+                        Unfurnished
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- Pets -->
+
+            <div>
+
+                <label>Pet Policy</label>
+
+                <select id="pets">
+
+                    <option value="">Any</option>
+
+                    <option value="no pets">
+                        No Pets
+                    </option>
+
+                    <option value="cats">
+                        Cats
+                    </option>
+
+                    <option value="small dogs">
+                        Small Dogs
+                    </option>
+
+                    <option value="large dogs">
+                        Large Dogs
+                    </option>
+
+                    <option value="all pets">
+                        All Pets
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- Move In -->
+
+            <div>
+
+                <label>Move-In Date</label>
+
+                <input
+                    type="date"
+                    id="moveInDate">
+
+            </div>
+
+        </div>
+
+        <!-- Buttons -->
+
+        <div class="button-row">
+
+            <button id="filterBtn">
+
+                Apply Filters
+
+            </button>
+
+            <button id="resetBtn">
+
+                Reset Filters
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- Listings -->
+
+    <main>
+
+        <section id="listings">
+
+            <!-- Housing cards generated by script.js -->
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+
+            © 2026 SafeStay
+
+        </p>
+
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Property Details | SafeStay</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🏠 SafeStay
+        </div>
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+
+            <li>
+                <a href="listings.html">Browse Listings</a>
+            </li>
+
+            <li>
+                <a href="favorites.html">Saved Listings ❤️</a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+    <!-- Property Details -->
+
+    <main class="details-container">
+
+        <div class="details-image">
+
+            <img
+                id="detailImage"
+                src=""
+                alt="Property">
+
+        </div>
+
+        <div class="details-info">
+
+            <h1 id="detailTitle"></h1>
+
+            <p class="location" id="detailLocation"></p>
+
+            <h2 id="detailPrice"></h2>
+
+            <hr>
+
+            <h3>Property Information</h3>
+
+            <ul class="detail-list">
+
+                <li>
+                    <strong>Property Type:</strong>
+                    <span id="detailType"></span>
+                </li>
+
+                <li>
+                    <strong>Lease Length:</strong>
+                    <span id="detailLease"></span>
+                </li>
+
+                <li>
+                    <strong>Bedrooms:</strong>
+                    <span id="detailBedrooms"></span>
+                </li>
+
+                <li>
+                    <strong>Bathrooms:</strong>
+                    <span id="detailBathrooms"></span>
+                </li>
+
+                <li>
+                    <strong>Furnished:</strong>
+                    <span id="detailFurnished"></span>
+                </li>
+
+                <li>
+                    <strong>Pet Policy:</strong>
+                    <span id="detailPets"></span>
+                </li>
+
+                <li>
+                    <strong>Move-In Date:</strong>
+                    <span id="detailMoveIn"></span>
+                </li>
+
+            </ul>
+
+            <hr>
+
+            <h3>Safety</h3>
+
+            <p id="detailSafety">
+                ⭐ 9.3 / 10 Safe Neighborhood
+            </p>
+
+            <hr>
+
+            <h3>Utilities Included</h3>
+
+            <ul>
+
+                <li>✓ Water</li>
+
+                <li>✓ Electricity</li>
+
+                <li>✓ Internet</li>
+
+                <li>✓ Trash</li>
+
+            </ul>
+
+            <hr>
+
+            <h3>Amenities</h3>
+
+            <div class="amenities">
+
+                <span>🚗 Parking</span>
+
+                <span>🏋️ Gym</span>
+
+                <span>🧺 In-Unit Laundry</span>
+
+                <span>🏊 Pool</span>
+
+                <span>🌳 Balcony</span>
+
+                <span>🔒 Security Cameras</span>
+
+            </div>
+
+            <div class="detail-buttons">
+
+                <button
+                    id="saveBtn">
+
+                    ❤️ Save Listing
+
+                </button>
+
+                <a
+                    href="listings.html"
+                    class="back-button">
+
+                    ← Back to Listings
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer>
+
+        <p>
+
+            © 2026 SafeStay
+
+        </p>
+
+    </footer>
+
+    <script>
+
+        // Retrieve selected listing from localStorage
+
+        const listing =
+            JSON.parse(localStorage.getItem("selectedListing"));
+
+        if (listing) {
+
+            document.getElementById("detailImage").src =
+                listing.image;
+
+            document.getElementById("detailTitle").textContent =
+                listing.title;
+
+            document.getElementById("detailLocation").textContent =
+                listing.location;
+
+            document.getElementById("detailPrice").textContent =
+                "$" + listing.price + "/month";
+
+            document.getElementById("detailType").textContent =
+                listing.propertyType;
+
+            document.getElementById("detailLease").textContent =
+                listing.leaseLength;
+
+            document.getElementById("detailBedrooms").textContent =
+                listing.bedrooms;
+
+            document.getElementById("detailBathrooms").textContent =
+                listing.bathrooms;
+
+            document.getElementById("detailFurnished").textContent =
+                listing.furnished ? "Yes" : "No";
+
+            document.getElementById("detailPets").textContent =
+                listing.pets;
+
+            document.getElementById("detailMoveIn").textContent =
+                listing.moveInDate;
+
+        }
+
+        // Save Listing
+
+        document.getElementById("saveBtn").addEventListener("click", () => {
+
+            let favorites =
+                JSON.parse(localStorage.getItem("favorites")) || [];
+
+            favorites.push(listing);
+
+            localStorage.setItem(
+                "favorites",
+                JSON.stringify(favorites)
+            );
+
+            alert("Listing saved!");
+
+        });
+
+    </script>
+
+</body>
+
+</html>

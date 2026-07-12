@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Saved Listings | SafeStay</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            🏠 SafeStay
+
+        </div>
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+
+            <li>
+                <a href="listings.html">Browse Listings</a>
+            </li>
+
+            <li>
+                <a href="favorites.html" class="active">
+                    Saved Listings ❤️
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+    <!-- Page Header -->
+
+    <header class="page-header">
+
+        <h1>Saved Listings</h1>
+
+        <p>
+            View and manage the properties you've saved.
+        </p>
+
+    </header>
+
+    <!-- Saved Cards -->
+
+    <main>
+
+        <section id="favoritesContainer">
+
+            <!-- Cards will be inserted here -->
+
+        </section>
+
+        <div class="favorites-buttons">
+
+            <a href="listings.html" class="back-button">
+
+                ← Continue Browsing
+
+            </a>
+
+            <button id="clearFavorites">
+
+                Clear All Saved Listings
+
+            </button>
+
+        </div>
+
+    </main>
+
+    <footer>
+
+        <p>
+
+            © 2026 SafeStay
+
+        </p>
+
+    </footer>
+
+    <script>
+
+        const container =
+            document.getElementById("favoritesContainer");
+
+        let favorites =
+            JSON.parse(localStorage.getItem("favorites")) || [];
+
+        function displayFavorites() {
+
+            container.innerHTML = "";
+
+            if (favorites.length === 0) {
+
+                container.innerHTML = `
+
+                    <div class="empty-favorites">
+
+                        <h2>No Saved Listings</h2>
+
+                        <p>
+
+                            You haven't saved any housing listings yet.
+
+                        </p>
+
+                        <a href="listings.html" class="hero-button">
+
+                            Browse Listings
+
+                        </a>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+            favorites.forEach((listing, index) => {
+
+                container.innerHTML += `
+
+                <div class="card">
+
+                    <img
+                        src="${listing.image}"
+                        alt="${listing.title}">
+
+                    <div class="card-content">
+
+                        <h3>${listing.title}</h3>
+
+                        <p>
+
+                            <strong>Location:</strong>
+
+                            ${listing.location}
+
+                        </p>
+
+                        <p>
+
+                            <strong>Price:</strong>
+
+                            $${listing.price}/month
+
+                        </p>
+
+                        <p>
+
+                            <strong>Property:</strong>
+
+                            ${listing.propertyType}
+
+                        </p>
+
+                        <p>
+
+                            <strong>Lease:</strong>
+
+                            ${listing.leaseLength}
+
+                        </p>
+
+                        <p>
+
+                            ⭐ Safe Neighborhood
+
+                        </p>
+
+                        <div class="card-buttons">
+
+                            <button
+                                onclick="viewListing(${index})">
+
+                                View Details
+
+                            </button>
+
+                            <button
+                                onclick="removeFavorite(${index})">
+
+                                Remove
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                `;
+
+            });
+
+        }
+
+        function removeFavorite(index) {
+
+            favorites.splice(index, 1);
+
+            localStorage.setItem(
+                "favorites",
+                JSON.stringify(favorites)
+            );
+
+            displayFavorites();
+
+        }
+
+        function viewListing(index) {
+
+            localStorage.setItem(
+                "selectedListing",
+                JSON.stringify(favorites[index])
+            );
+
+            window.location.href = "details.html";
+
+        }
+
+        document
+            .getElementById("clearFavorites")
+            .addEventListener("click", () => {
+
+                if (confirm("Clear all saved listings?")) {
+
+                    localStorage.removeItem("favorites");
+
+                    favorites = [];
+
+                    displayFavorites();
+
+                }
+
+            });
+
+        displayFavorites();
+
+    </script>
+
+</body>
+
+</html>

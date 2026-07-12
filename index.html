@@ -1,100 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SafeStay</title>
+
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-    <header>
-        <h1>SafeStay</h1>
-        <p>Find trustworthy short-term housing.</p>
-    </header>
+    <!-- Navigation -->
 
-    <section class="filters">
+    <nav class="navbar">
 
-        <h2>Filter Listings</h2>
+        <div class="logo">
+            🏠 SafeStay
+        </div>
 
-        <div class="filter-group">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="listings.html">Browse Listings</a></li>
+            <li><a href="favorites.html">Saved Listings</a></li>
+        </ul>
 
-            <label>Min Price</label>
-            <input type="number" id="minPrice">
+    </nav>
 
-            <label>Max Price</label>
-            <input type="number" id="maxPrice">
+    <!-- Hero -->
 
-            <label>Property Type</label>
-            <select id="propertyType">
-                <option value="">Any</option>
-                <option value="entire apartment">Entire Apartment</option>
-                <option value="private room">Private Room</option>
-                <option value="shared room">Shared Room</option>
-                <option value="studio">Studio</option>
-                <option value="sublet">Sublet</option>
-            </select>
+    <section class="hero">
 
-            <label>Lease Length</label>
-            <select id="leaseLength">
-                <option value="">Any</option>
-                <option value="<3 months">Less than 3 Months</option>
-                <option value="3 months">3 Months</option>
-                <option value="6 months">6 Months</option>
-                <option value="1 year">1 Year</option>
-                <option value="flexible">Flexible</option>
-            </select>
+        <div class="hero-text">
 
-            <label>Bedrooms</label>
-            <select id="bedrooms">
-                <option value="">Any</option>
-                <option value="0">Studio</option>
-                <option value="1">1 Bedroom</option>
-                <option value="2">2 Bedrooms</option>
-                <option value="3">3+ Bedrooms</option>
-            </select>
+            <h1>
+                Find Safe & Reliable
+                <br>
+                Short-Term Housing
+            </h1>
 
-            <label>Bathrooms</label>
-            <select id="bathrooms">
-                <option value="">Any</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3+</option>
-            </select>
+            <p>
+                SafeStay helps students, interns, international students,
+                and young professionals compare trustworthy housing
+                options with transparent information.
+            </p>
 
-            <label>Furnishing</label>
-            <select id="furnished">
-                <option value="">Any</option>
-                <option value="true">Furnished</option>
-                <option value="false">Unfurnished</option>
-            </select>
+            <a href="listings.html" class="hero-button">
+                Start Searching
+            </a>
 
-            <label>Pet Policy</label>
-            <select id="pets">
-                <option value="">Any</option>
-                <option value="no pets">No Pets</option>
-                <option value="cats">Cats</option>
-                <option value="small dogs">Small Dogs</option>
-                <option value="large dogs">Large Dogs</option>
-                <option value="all pets">All Pets</option>
-            </select>
+        </div>
 
-            <label>Move-In Date</label>
-            <input type="date" id="moveInDate">
+        <div class="hero-image">
 
-            <button id="filterBtn">
-                Apply Filters
-            </button>
+            <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1000"
+                 alt="Apartment">
 
         </div>
 
     </section>
 
-    <section id="listings"></section>
+    <!-- Why Choose -->
 
-    <script src="script.js"></script>
+    <section class="features">
+
+        <h2>
+            Why Choose SafeStay?
+        </h2>
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+
+                <h3>🏠 Trusted Housing</h3>
+
+                <p>
+                    Browse reliable short-term housing for internships,
+                    school, and temporary relocation.
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <h3>🔒 Safety Information</h3>
+
+                <p>
+                    Compare neighborhood safety scores before making
+                    housing decisions.
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <h3>📶 Housing Details</h3>
+
+                <p>
+                    Compare Wi-Fi, parking, furnished options,
+                    utilities, and lease flexibility.
+                </p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <h3>❤️ Save Favorites</h3>
+
+                <p>
+                    Save listings you like and revisit them later.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- How It Works -->
+
+    <section class="steps">
+
+        <h2>How It Works</h2>
+
+        <div class="step-container">
+
+            <div class="step">
+
+                <h3>1</h3>
+
+                <p>
+                    Search available housing listings.
+                </p>
+
+            </div>
+
+            <div class="step">
+
+                <h3>2</h3>
+
+                <p>
+                    Filter by budget, lease length,
+                    property type, and amenities.
+                </p>
+
+            </div>
+
+            <div class="step">
+
+                <h3>3</h3>
+
+                <p>
+                    View details and save your favorite properties.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+
+            © 2026 SafeStay
+
+            <br>
+
+            Helping students and interns find
+            trustworthy temporary housing.
+
+        </p>
+
+    </footer>
 
 </body>
 </html>
