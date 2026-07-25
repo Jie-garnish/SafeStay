@@ -1,686 +1,382 @@
-// =====================================================
-// SafeStay JavaScript
-// Supports:
-// index.html
-// listings.html
-// details.html
-// favorites.html
-// =====================================================
+/*
+  SafeStay homepage JavaScript
 
+  This file:
+  1. Loads a hero image from Wikimedia Commons.
+  2. Displays the image attribution.
+  3. Controls the mobile menu.
+  4. Controls the search panel.
+  5. Sends homepage searches to listings.html.
+*/
 
-// ===============================
-// HOUSING DATA
-// ===============================
+/* ================================
+   REMOVE HTML FROM API TEXT
+================================ */
 
-const housingListings = [
-
-    {
-        id: 1,
-        title: "Downtown Studio",
-        location: "Austin, TX",
-        price: 1200,
-        propertyType: "studio",
-        leaseLength: "3 months",
-        bedrooms: 0,
-        bathrooms: 1,
-        furnished: true,
-        pets: "cats",
-        moveInDate: "2026-08-01",
-        safety: "High",
-        image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800"
-    },
-
-
-    {
-        id: 2,
-        title: "Intern Apartment",
-        location: "Greensboro, NC",
-        price: 950,
-        propertyType: "private room",
-        leaseLength: "flexible",
-        bedrooms: 1,
-        bathrooms: 1,
-        furnished: true,
-        pets: "small dogs",
-        moveInDate: "2026-07-15",
-        safety: "Very High",
-        image: "https://images.unsplash.com/photo-1494526585095-c41746248156?w=800"
-    },
-
-
-    {
-        id: 3,
-        title: "Student Housing",
-        location: "Boston, MA",
-        price: 800,
-        propertyType: "shared room",
-        leaseLength: "6 months",
-        bedrooms: 2,
-        bathrooms: 2,
-        furnished: false,
-        pets: "no pets",
-        moveInDate: "2026-09-01",
-        safety: "Medium",
-        image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800"
+const removeHtml = (value) => {
+    const temporaryElement = document.createElement("div");
+  
+    temporaryElement.innerHTML = value;
+  
+    return temporaryElement.textContent.trim();
+  };
+  
+  /* ================================
+     LOAD HERO IMAGE
+  ================================ */
+  
+  const loadHeroImage = async () => {
+    const heroImage = document.querySelector("#hero-image");
+    const heroCredit = document.querySelector("#hero-credit");
+  
+    if (!heroImage) {
+      return;
     }
-
-];
-
-
-
-// ===============================
-// DISPLAY LISTINGS
-// ===============================
-
-function displayListings(listings) {
-
-
-    const container =
-        document.getElementById("listings");
-
-
-    if (!container) return;
-
-
-    container.innerHTML = "";
-
-
-    listings.forEach(listing => {
-
-
-        container.innerHTML += `
-
-
-        <div class="listing-card">
-
-
-            <img src="${listing.image}" 
-            alt="${listing.title}">
-
-
-            <div class="listing-info">
-
-
-                <h3>
-                ${listing.title}
-                </h3>
-
-
-                <p class="location">
-                ${listing.location}
-                </p>
-
-
-                <p class="price">
-                $${listing.price}/month
-                </p>
-
-
-                <div class="tags">
-
-                    <span class="tag">
-                    ${listing.propertyType}
-                    </span>
-
-
-                    <span class="tag">
-                    ${listing.leaseLength}
-                    </span>
-
-
-                    <span class="tag">
-                    Safety: ${listing.safety}
-                    </span>
-
-                </div>
-
-
-
-                <br>
-
-
-                <button 
-                class="primary-btn"
-                onclick="viewDetails(${listing.id})">
-
-                View Details
-
-                </button>
-
-
-
-                <button 
-                class="favorite-btn"
-                onclick="saveFavorite(${listing.id})">
-
-                ♡ Save
-
-                </button>
-
-
-            </div>
-
-
-        </div>
-
-
-        `;
-
-
+  
+    const apiUrl = "https://commons.wikimedia.org/w/api.php";
+  
+    const parameters = new URLSearchParams({
+      action: "query",
+      format: "json",
+      origin: "*",
+  
+      generator: "search",
+      gsrsearch:
+        "modern furnished apartment interior living room filetype:bitmap",
+      gsrnamespace: "6",
+      gsrlimit: "12",
+  
+      prop: "imageinfo",
+      iiprop: "url|extmetadata",
+      iiurlwidth: "1800"
     });
-
-}
-
-
-
-// Load listings when page opens
-
-displayListings(housingListings);
-
-
-
-
-
-// ===============================
-// FILTER FUNCTION
-// ===============================
-
-
-const filterButton =
-document.getElementById("filterBtn");
-
-
-
-if(filterButton){
-
-
-filterButton.addEventListener(
-"click",
-function(){
-
-
-let filtered =
-housingListings;
-
-
-
-const minPrice =
-Number(
-document.getElementById("minPrice").value
-);
-
-
-
-const maxPrice =
-Number(
-document.getElementById("maxPrice").value
-);
-
-
-
-const propertyType =
-document.getElementById("propertyType").value;
-
-
-
-const leaseLength =
-document.getElementById("leaseLength").value;
-
-
-
-if(minPrice){
-
-filtered =
-filtered.filter(
-listing =>
-listing.price >= minPrice
-);
-
-}
-
-
-
-if(maxPrice){
-
-filtered =
-filtered.filter(
-listing =>
-listing.price <= maxPrice
-);
-
-}
-
-
-
-if(propertyType){
-
-filtered =
-filtered.filter(
-listing =>
-listing.propertyType === propertyType
-);
-
-}
-
-
-
-if(leaseLength){
-
-filtered =
-filtered.filter(
-listing =>
-listing.leaseLength === leaseLength
-);
-
-}
-
-
-
-displayListings(filtered);
-
-
-
-});
-
-
-}
-
-
-
-
-
-
-// ===============================
-// VIEW DETAILS PAGE
-// ===============================
-
-
-function viewDetails(id){
-
-
-localStorage.setItem(
-"selectedListing",
-id
-);
-
-
-
-window.location.href =
-"details.html";
-
-
-}
-
-
-
-
-
-
-// ===============================
-// SAVE FAVORITES
-// ===============================
-
-
-function saveFavorite(id){
-
-
-let favorites =
-JSON.parse(
-localStorage.getItem("favorites")
-) || [];
-
-
-
-const listing =
-housingListings.find(
-item =>
-item.id === id
-);
-
-
-
-const exists =
-favorites.some(
-item =>
-item.id === id
-);
-
-
-
-if(!exists){
-
-
-favorites.push(listing);
-
-
-localStorage.setItem(
-"favorites",
-JSON.stringify(favorites)
-);
-
-
-alert(
-"Saved to favorites ❤️"
-);
-
-
-}
-
-else{
-
-
-alert(
-"Already saved!"
-);
-
-
-}
-
-
-}
-
-
-
-
-
-
-
-// ===============================
-// DETAILS PAGE
-// ===============================
-
-
-function displayDetails(){
-
-
-const container =
-document.getElementById("details");
-
-
-
-if(!container) return;
-
-
-
-const id =
-Number(
-localStorage.getItem(
-"selectedListing"
-)
-);
-
-
-
-const listing =
-housingListings.find(
-item =>
-item.id === id
-);
-
-
-
-if(!listing) return;
-
-
-
-container.innerHTML = `
-
-
-<img 
-src="${listing.image}">
-
-
-
-<h1>
-${listing.title}
-</h1>
-
-
-
-<p>
-📍 ${listing.location}
-</p>
-
-
-
-<h2>
-$${listing.price}/month
-</h2>
-
-
-
-<p>
-Property Type:
-${listing.propertyType}
-</p>
-
-
-
-<p>
-Lease:
-${listing.leaseLength}
-</p>
-
-
-
-<p>
-Bedrooms:
-${listing.bedrooms}
-</p>
-
-
-
-<p>
-Bathrooms:
-${listing.bathrooms}
-</p>
-
-
-
-<p>
-Furniture:
-${listing.furnished ? "Included" : "Not Included"}
-</p>
-
-
-
-<p>
-Pets:
-${listing.pets}
-</p>
-
-
-
-<div class="safety-score">
-
-<h3>
-Safety Score:
-${listing.safety}
-</h3>
-
-</div>
-
-
-
-<button
-class="favorite-btn"
-onclick="saveFavorite(${listing.id})">
-
-♡ Save
-
-</button>
-
-
-`;
-
-}
-
-
-displayDetails();
-
-
-
-
-
-
-// ===============================
-// FAVORITES PAGE
-// ===============================
-
-
-function displayFavorites(){
-
-
-const container =
-document.getElementById("favorites");
-
-
-
-if(!container) return;
-
-
-
-const favorites =
-JSON.parse(
-localStorage.getItem("favorites")
-) || [];
-
-
-
-container.innerHTML="";
-
-
-
-if(favorites.length === 0){
-
-
-container.innerHTML = `
-
-<div class="empty-state">
-
-<h2>
-No saved housing yet
-</h2>
-
-<p>
-Start saving listings you like!
-</p>
-
-
-</div>
-
-`;
-
-
-return;
-
-
-}
-
-
-
-
-
-favorites.forEach(listing => {
-
-
-
-container.innerHTML += `
-
-
-<div class="saved-card">
-
-
-<img 
-src="${listing.image}">
-
-
-
-<div class="saved-info">
-
-
-<h3>
-${listing.title}
-</h3>
-
-
-<p>
-${listing.location}
-</p>
-
-
-<p>
-$${listing.price}/month
-</p>
-
-
-
-<button
-class="remove-btn"
-onclick="removeFavorite(${listing.id})">
-
-Remove
-
-</button>
-
-
-
-</div>
-
-
-</div>
-
-
-
-`;
-
-
-
-});
-
-
-}
-
-
-
-displayFavorites();
-
-
-
-
-
-
-// ===============================
-// REMOVE FAVORITES
-// ===============================
-
-
-function removeFavorite(id){
-
-
-let favorites =
-JSON.parse(
-localStorage.getItem("favorites")
-) || [];
-
-
-
-favorites =
-favorites.filter(
-item =>
-item.id !== id
-);
-
-
-
-localStorage.setItem(
-"favorites",
-JSON.stringify(favorites)
-);
-
-
-
-displayFavorites();
-
-
-}
+  
+    try {
+      const response = await fetch(`${apiUrl}?${parameters.toString()}`);
+  
+      if (!response.ok) {
+        throw new Error(
+          `Wikimedia request failed with status ${response.status}`
+        );
+      }
+  
+      const data = await response.json();
+  
+      const images = Object.values(data.query?.pages || {});
+  
+      /*
+        Only keep images that have thumbnail URLs.
+        This also removes SVG files from the results.
+      */
+  
+      const availableImages = images.filter((image) => {
+        const imageInformation = image.imageinfo?.[0];
+  
+        if (!imageInformation?.thumburl) {
+          return false;
+        }
+  
+        const thumbnailUrl = imageInformation.thumburl.toLowerCase();
+  
+        return !thumbnailUrl.endsWith(".svg");
+      });
+  
+      if (availableImages.length === 0) {
+        throw new Error("No suitable hero images were found.");
+      }
+  
+      /*
+        Select one of the first few relevant results.
+  
+        sessionStorage keeps the same image while the user moves
+        between pages during the same browser session.
+      */
+  
+      let selectedIndex = Number(
+        sessionStorage.getItem("safeStayHeroImageIndex")
+      );
+  
+      if (
+        !Number.isInteger(selectedIndex) ||
+        selectedIndex < 0 ||
+        selectedIndex >= availableImages.length
+      ) {
+        selectedIndex = Math.floor(
+          Math.random() * Math.min(availableImages.length, 5)
+        );
+  
+        sessionStorage.setItem(
+          "safeStayHeroImageIndex",
+          String(selectedIndex)
+        );
+      }
+  
+      const selectedImage = availableImages[selectedIndex];
+      const imageInformation = selectedImage.imageinfo[0];
+      const metadata = imageInformation.extmetadata || {};
+      const imageUrl = imageInformation.thumburl;
+  
+      /*
+        Replace the --hero-photo CSS variable.
+        The gradient defined in CSS remains on top of the image.
+      */
+  
+      heroImage.style.setProperty(
+        "--hero-photo",
+        `url("${imageUrl}")`
+      );
+  
+      /*
+        Create an accessible description from the Wikimedia filename.
+      */
+  
+      const accessibleImageName = selectedImage.title
+        .replace(/^File:/i, "")
+        .replace(/\.[^.]+$/, "")
+        .replaceAll("_", " ");
+  
+      heroImage.setAttribute(
+        "aria-label",
+        accessibleImageName
+      );
+  
+      /*
+        Add the photographer and license underneath the image.
+      */
+  
+      if (heroCredit) {
+        const artist = removeHtml(
+          metadata.Artist?.value ||
+            metadata.Credit?.value ||
+            "Wikimedia Commons contributor"
+        );
+  
+        const license = removeHtml(
+          metadata.LicenseShortName?.value ||
+            metadata.UsageTerms?.value ||
+            "Open license"
+        );
+  
+        heroCredit.textContent = `Photo: ${artist} · ${license}`;
+  
+        heroCredit.href =
+          imageInformation.descriptionurl ||
+          `https://commons.wikimedia.org/wiki/${encodeURIComponent(
+            selectedImage.title
+          )}`;
+  
+        heroCredit.hidden = false;
+      }
+    } catch (error) {
+      /*
+        If the API is unavailable, CSS continues to show:
+        ./assets/hero-home.jpg
+      */
+  
+      console.warn(
+        "The Wikimedia hero image could not be loaded. " +
+          "The local fallback image will be used.",
+        error
+      );
+  
+      if (heroCredit) {
+        heroCredit.hidden = true;
+      }
+    }
+  };
+  
+  /* ================================
+     INITIALIZE HOMEPAGE
+  ================================ */
+  
+  const initializeHomepage = () => {
+    const menuButton = document.querySelector(".menu-button");
+    const mobileNavigation = document.querySelector(
+      "#mobile-navigation"
+    );
+  
+    const searchButton = document.querySelector(".icon-button");
+    const searchPanel = document.querySelector("#search-panel");
+    const searchInput = document.querySelector("#site-search");
+    const searchForm = document.querySelector(".search-form");
+  
+    /*
+      Start loading the hero image.
+    */
+  
+    loadHeroImage();
+  
+    /* ================================
+       MOBILE MENU FUNCTIONS
+    ================================ */
+  
+    const closeMenu = () => {
+      if (!menuButton || !mobileNavigation) {
+        return;
+      }
+  
+      mobileNavigation.hidden = true;
+  
+      menuButton.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+  
+      menuButton.setAttribute(
+        "aria-label",
+        "Open menu"
+      );
+    };
+  
+    const closeSearch = () => {
+      if (!searchPanel) {
+        return;
+      }
+  
+      searchPanel.hidden = true;
+    };
+  
+    /*
+      Open and close the mobile navigation.
+    */
+  
+    menuButton?.addEventListener("click", () => {
+      if (!mobileNavigation) {
+        return;
+      }
+  
+      const willOpen = mobileNavigation.hidden;
+  
+      mobileNavigation.hidden = !willOpen;
+  
+      menuButton.setAttribute(
+        "aria-expanded",
+        String(willOpen)
+      );
+  
+      menuButton.setAttribute(
+        "aria-label",
+        willOpen ? "Close menu" : "Open menu"
+      );
+  
+      if (willOpen) {
+        closeSearch();
+      }
+    });
+  
+    /*
+      Open and close the search panel.
+    */
+  
+    searchButton?.addEventListener("click", () => {
+      if (!searchPanel) {
+        return;
+      }
+  
+      const willOpen = searchPanel.hidden;
+  
+      searchPanel.hidden = !willOpen;
+  
+      if (willOpen) {
+        closeMenu();
+        searchInput?.focus();
+      }
+    });
+  
+    /*
+      Close the mobile menu after the user selects a link.
+    */
+  
+    mobileNavigation?.addEventListener("click", (event) => {
+      if (event.target instanceof HTMLAnchorElement) {
+        closeMenu();
+      }
+    });
+  
+    /* ================================
+       HOMEPAGE SEARCH
+    ================================ */
+  
+    searchForm?.addEventListener("submit", (event) => {
+      event.preventDefault();
+  
+      const searchTerm = searchInput?.value.trim();
+  
+      if (!searchTerm) {
+        searchInput?.focus();
+        return;
+      }
+  
+      /*
+        Send the search term to the listings page.
+  
+        Example:
+        listings.html?search=apartment
+      */
+  
+      const parameters = new URLSearchParams({
+        search: searchTerm
+      });
+  
+      window.location.href =
+        `listings.html?${parameters.toString()}`;
+    });
+  
+    /* ================================
+       KEYBOARD INTERACTIONS
+    ================================ */
+  
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeMenu();
+        closeSearch();
+      }
+    });
+  
+    /*
+      Close the search panel if the user clicks outside it.
+    */
+  
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+  
+      if (!(target instanceof Node)) {
+        return;
+      }
+  
+      if (
+        searchPanel &&
+        searchButton &&
+        !searchPanel.hidden &&
+        !searchPanel.contains(target) &&
+        !searchButton.contains(target)
+      ) {
+        closeSearch();
+      }
+    });
+  
+    /*
+      Close the mobile menu when the screen becomes desktop size.
+    */
+  
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 760) {
+        closeMenu();
+      }
+    });
+  };
+  
+  /* ================================
+     RUN AFTER HTML LOADS
+  ================================ */
+  
+  if (document.readyState === "loading") {
+    document.addEventListener(
+      "DOMContentLoaded",
+      initializeHomepage
+    );
+  } else {
+    initializeHomepage();
+  }
+
+  

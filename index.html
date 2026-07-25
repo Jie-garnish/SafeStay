@@ -1,175 +1,539 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SafeStay</title>
 
-    <link rel="stylesheet" href="styles.css">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="SafeStay helps students and young professionals find safe and transparent short-term housing."
+  >
+
+  <title>SafeStay | Safe Short-Term Housing</title>
+
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-    <nav class="navbar">
+  <!-- HEADER -->
 
-        <div class="logo">
-            🏠 SafeStay
-        </div>
+  <header class="site-header">
 
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="listings.html">Browse Listings</a></li>
-            <li><a href="favorites.html">Saved Listings</a></li>
-        </ul>
+    <!-- Logo -->
+    <a
+      class="brand"
+      href="index.html"
+      aria-label="SafeStay homepage"
+    >
+      <svg
+        class="logo-mark"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M3 10.2 12 4l9 6.2"></path>
+        <path d="M5.4 9.5V20h6.3"></path>
 
+        <path
+          d="M18.2 13.2c1.1.8 2.1.9 2.8 1v3.2
+          c0 2.2-1.6 4-4.6 4.9-3-.9-4.6-2.7-4.6-4.9v-3.2
+          c1.9-.2 3.4-.8 4.6-1.8.6.4 1.2.7 1.8.8Z"
+        ></path>
+      </svg>
+
+      <span>
+        <strong>SafeStay</strong>
+        <small>Safe. Furnished. Yours</small>
+      </span>
+    </a>
+
+    <!-- Desktop navigation -->
+    <nav
+      class="desktop-nav"
+      aria-label="Main navigation"
+    >
+      <a
+        class="active"
+        href="index.html"
+      >
+        Home
+      </a>
+
+      <a href="listings.html">
+        Browse Listings
+      </a>
+
+      <a href="favorites.html">
+        Saved Listings
+      </a>
     </nav>
 
-    <!-- Hero -->
+    <!-- Header actions -->
+    <div class="header-actions">
+
+      <!-- Search button -->
+      <button
+        class="icon-button"
+        type="button"
+        aria-label="Search"
+        aria-controls="search-panel"
+        aria-expanded="false"
+      >
+        <img
+          class="nav-icon"
+          src="assets/search.png"
+          alt=""
+          aria-hidden="true"
+        >
+      </button>
+
+      <!-- Sign-in button -->
+      <a class="sign-in" href="#">
+        <img
+          class="button-icon"
+          src="assets/User.png"
+          alt=""
+          aria-hidden="true"
+        >
+
+        <span>Sign In</span>
+      </a>
+
+      <!-- Mobile menu button -->
+      <button
+        class="menu-button"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-navigation"
+      >
+        <img
+          class="nav-icon"
+          src="assets/Menu.png"
+          alt=""
+          aria-hidden="true"
+        >
+      </button>
+
+    </div>
+  </header>
+
+  <!-- SEARCH PANEL -->
+
+  <div
+    class="search-panel"
+    id="search-panel"
+    hidden
+  >
+    <form
+      class="search-form"
+      role="search"
+    >
+      <label
+        class="sr-only"
+        for="site-search"
+      >
+        Search SafeStay
+      </label>
+
+      <input
+        id="site-search"
+        name="search"
+        type="search"
+        placeholder="Search by city, school, or workplace"
+      >
+
+      <button type="submit">
+        Search
+      </button>
+    </form>
+  </div>
+
+  <!-- MOBILE NAVIGATION -->
+
+  <nav
+    class="mobile-nav"
+    id="mobile-navigation"
+    aria-label="Mobile navigation"
+    hidden
+  >
+    <a href="index.html">
+      Home
+    </a>
+
+    <a href="listings.html">
+      Browse Listings
+    </a>
+
+    <a href="favorites.html">
+      Saved Listings
+    </a>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+
+  <main>
+
+    <!-- HERO SECTION -->
 
     <section class="hero">
 
-        <div class="hero-text">
+      <div
+        class="hero-image"
+        id="hero-image"
+        role="img"
+        aria-label="Modern furnished apartment interior"
+      ></div>
 
-            <h1>
-                Find Safe & Reliable
-                <br>
-                Short-Term Housing
-            </h1>
+      <a
+        class="hero-credit"
+        id="hero-credit"
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+        hidden
+      ></a>
 
-            <p>
-                SafeStay helps students, interns, international students,
-                and young professionals compare trustworthy housing
-                options with transparent information.
-            </p>
+      <div class="hero-content">
 
-            <a href="listings.html" class="hero-button">
-                Start Searching
-            </a>
-
-        </div>
-
-        <div class="hero-image">
-
-            <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1000"
-                 alt="Apartment">
-
-        </div>
-
-    </section>
-
-    <section class="features">
-
-        <h2>
-            Why Choose SafeStay?
-        </h2>
-
-        <div class="feature-grid">
-
-            <div class="feature-card">
-
-                <h3>🏠 Trusted Housing</h3>
-
-                <p>
-                    Browse reliable short-term housing for internships,
-                    school, and temporary relocation.
-                </p>
-
-            </div>
-
-            <div class="feature-card">
-
-                <h3>🔒 Safety Information</h3>
-
-                <p>
-                    Compare neighborhood safety scores before making
-                    housing decisions.
-                </p>
-
-            </div>
-
-            <div class="feature-card">
-
-                <h3>📶 Housing Details</h3>
-
-                <p>
-                    Compare Wi-Fi, parking, furnished options,
-                    utilities, and lease flexibility.
-                </p>
-
-            </div>
-
-            <div class="feature-card">
-
-                <h3>❤️ Save Favorites</h3>
-
-                <p>
-                    Save listings you like and revisit them later.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section class="steps">
-
-        <h2>How It Works</h2>
-
-        <div class="step-container">
-
-            <div class="step">
-
-                <h3>1</h3>
-
-                <p>
-                    Search available housing listings.
-                </p>
-
-            </div>
-
-            <div class="step">
-
-                <h3>2</h3>
-
-                <p>
-                    Filter by budget, lease length,
-                    property type, and amenities.
-                </p>
-
-            </div>
-
-            <div class="step">
-
-                <h3>3</h3>
-
-                <p>
-                    View details and save your favorite properties.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    
-
-    <footer>
+        <h1>
+          <span>Find Safe &amp; Reliable</span>
+          <em>Short-Term Housing</em>
+        </h1>
 
         <p>
-
-            © 2026 SafeStay
-
-            <br>
-
-            Helping students and interns find
-            trustworthy temporary housing.
-
+          SafeStay helps students, interns, international students,
+          and young professionals compare trustworthy housing options
+          with transparent information.
         </p>
 
-    </footer>
+        <div class="hero-actions">
+
+          <a
+            class="button primary"
+            href="listings.html"
+          >
+            Start Searching
+          </a>
+
+          <a
+            class="button secondary"
+            href="#features"
+          >
+            Learn More
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURE CARDS -->
+
+    <section
+      class="features"
+      id="features"
+      aria-label="SafeStay benefits"
+    >
+
+      <!-- Trusted Housing -->
+      <article class="feature-card">
+
+        <img
+          class="feature-icon"
+          src="assets/Guarantee.png"
+          alt=""
+          aria-hidden="true"
+        >
+
+        <h2>Trusted Housing</h2>
+
+        <p>
+          Browse reliable short-term housing for internships,
+          school, and temporary relocation.
+        </p>
+
+      </article>
+
+      <!-- Safety Information -->
+      <article class="feature-card">
+
+        <img
+          class="feature-icon"
+          src="assets/Real Estate.png"
+          alt=""
+          aria-hidden="true"
+        >
+
+        <h2>Safety Information</h2>
+
+        <p>
+          Compare neighbourhood safety scores before making
+          housing decisions.
+        </p>
+
+      </article>
+
+      <!-- Housing Details -->
+      <article class="feature-card">
+
+        <img
+          class="feature-icon"
+          src="assets/Tools.png"
+          alt=""
+          aria-hidden="true"
+        >
+
+        <h2>Housing Details</h2>
+
+        <p>
+          Compare Wi-Fi, parking, furnished options, utilities,
+          and lease flexibility.
+        </p>
+
+      </article>
+
+      <!-- Save Favorites -->
+      <article class="feature-card">
+
+        <img
+          class="feature-icon"
+          src="assets/Heart.png"
+          alt=""
+          aria-hidden="true"
+        >
+
+        <h2>Save Favorites</h2>
+
+        <p>
+          Save listings you like and revisit them later.
+        </p>
+
+      </article>
+
+    </section>
+
+    <!-- HOW IT WORKS -->
+
+    <section
+      class="steps"
+      id="steps"
+      aria-labelledby="steps-heading"
+    >
+
+      <h2 id="steps-heading">
+        Find Your Next Home with Confidence
+      </h2>
+
+      <div class="steps-grid">
+
+        <!-- Step one -->
+        <div class="step">
+
+          <span class="step-number">
+            1
+          </span>
+
+          <p class="step-text">
+            Search available housing listings
+          </p>
+
+        </div>
+
+        <span
+          class="step-arrow"
+          aria-hidden="true"
+        >
+          ╌╌╌╌╌➜
+        </span>
+
+        <!-- Step two -->
+        <div class="step">
+
+          <span class="step-number">
+            2
+          </span>
+
+          <p class="step-text">
+            Filter by budget, lease length, property type,
+            and amenities
+          </p>
+
+        </div>
+
+        <span
+          class="step-arrow"
+          aria-hidden="true"
+        >
+          ╌╌╌╌╌➜
+        </span>
+
+        <!-- Step three -->
+        <div class="step">
+
+          <span class="step-number">
+            3
+          </span>
+
+          <p class="step-text">
+            View details and save your favorite properties
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+
+  <footer class="site-footer">
+
+    <!-- Footer branding -->
+    <div class="footer-brand">
+
+      <strong>SafeStay</strong>
+      <span>Safe. Furnished. Yours</span>
+
+      <!-- Social media icons -->
+      <div class="socials">
+
+        <a
+          class="social-icon"
+          href="#"
+          aria-label="X"
+        >
+          <img
+            src="assets/X.png"
+            alt=""
+            aria-hidden="true"
+          >
+        </a>
+
+        <a
+          class="social-icon"
+          href="#"
+          aria-label="LinkedIn"
+        >
+          <img
+            src="assets/Linkedin.png"
+            alt=""
+            aria-hidden="true"
+          >
+        </a>
+
+        <a
+          class="social-icon"
+          href="#"
+          aria-label="Instagram"
+        >
+          <img
+            src="assets/Instagram.png"
+            alt=""
+            aria-hidden="true"
+          >
+        </a>
+
+        <a
+          class="social-icon"
+          href="#"
+          aria-label="Facebook"
+        >
+          <img
+            src="assets/Facebook.png"
+            alt=""
+            aria-hidden="true"
+          >
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Home links -->
+    <div class="footer-column">
+
+      <h2>Home</h2>
+
+      <a href="listings.html">
+        Property Search
+      </a>
+
+      <a href="#">
+        List Your Property
+      </a>
+
+      <a href="#">
+        Testimonials
+      </a>
+
+    </div>
+
+    <!-- Support links -->
+    <div class="footer-column">
+
+      <h2>Support</h2>
+
+      <a href="#">
+        Help Center
+      </a>
+
+      <a href="#">
+        Q&amp;A
+      </a>
+
+      <a href="#">
+        Feedback
+      </a>
+
+    </div>
+
+    <!-- Contact information -->
+    <div class="footer-column contact">
+
+      <h2>Contact Us</h2>
+
+      <a href="tel:1234567890">
+        <img
+          class="contact-icon"
+          src="assets/Phone.png"
+          alt=""
+          aria-hidden="true"
+        >
+
+        <span>
+          (123) 456-7890
+        </span>
+      </a>
+
+      <a href="mailto:support@safestay.com">
+        <img
+          class="contact-icon"
+          src="assets/Letter.png"
+          alt=""
+          aria-hidden="true"
+        >
+
+        <span>
+          support@safestay.com
+        </span>
+      </a>
+
+    </div>
+
+  </footer>
+
+  <!-- Homepage JavaScript -->
+  <script src="script.js" defer></script>
 
 </body>
 </html>

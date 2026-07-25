@@ -1,264 +1,373 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8">
 
-    <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="Review and manage your saved SafeStay housing listings."
+  >
 
-    <title>Saved Listings | SafeStay</title>
+  <title>Saved Listings | SafeStay</title>
 
-    <link rel="stylesheet" href="styles.css">
+  <!-- Favorites page CSS -->
+  <link rel="stylesheet" href="favorites.css">
 
+  <!-- Favorites page JavaScript -->
+  <script src="favorites.js" defer></script>
 </head>
 
 <body>
 
-    
+  <!-- Header -->
 
-    <nav class="navbar">
+  <header class="site-header">
 
-        <div class="logo">
+    <!-- SafeStay logo and name -->
+    <a
+      class="brand"
+      href="index.html"
+      aria-label="SafeStay homepage"
+    >
+      <svg
+        class="logo-mark"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M3 10.2 12 4l9 6.2"></path>
+        <path d="M5.4 9.5V20h6.3"></path>
 
-            🏠 SafeStay
+        <path
+          d="M18.2 13.2c1.1.8 2.1.9 2.8 1v3.2c0 2.2-1.6 4-4.6 4.9-3-.9-4.6-2.7-4.6-4.9v-3.2c1.9-.2 3.4-.8 4.6-1.8.6.4 1.2.7 1.8.8Z"
+        ></path>
+      </svg>
 
-        </div>
+      <span>
+        <strong>SafeStay</strong>
+        <small>Safe. Furnished. Yours</small>
+      </span>
+    </a>
 
-        <ul class="nav-links">
+    <!-- Desktop navigation -->
+    <nav
+      class="desktop-nav"
+      aria-label="Main navigation"
+    >
+      <a href="index.html">
+        Home
+      </a>
 
-            <li>
-                <a href="index.html">Home</a>
-            </li>
+      <a href="listings.html">
+        Browse Listings
+      </a>
 
-            <li>
-                <a href="listings.html">Browse Listings</a>
-            </li>
-
-            <li>
-                <a href="favorites.html" class="active">
-                    Saved Listings ❤️
-                </a>
-            </li>
-
-        </ul>
-
+      <a
+        class="active"
+        href="favorites.html"
+        aria-current="page"
+      >
+        Saved Listings
+      </a>
     </nav>
 
-    
+    <!-- Header buttons -->
+    <div class="header-actions">
 
-    <header class="page-header">
+      <!-- Search button -->
+      <a
+        class="search-button"
+        href="listings.html"
+        aria-label="Search listings"
+      >
+        <img
+          class="nav-icon"
+          src="assets/search.png"
+          alt=""
+          aria-hidden="true"
+        >
+      </a>
 
-        <h1>Saved Listings</h1>
+      <!-- Sign-in button -->
+      <a
+        class="sign-in"
+        href="#"
+        aria-label="Sign in"
+      >
+        <img
+          class="button-icon"
+          src="assets/User.png"
+          alt=""
+          aria-hidden="true"
+        >
 
-        <p>
-            View and manage the properties you've saved.
-        </p>
+        <span>Sign In</span>
+      </a>
+
+      <!-- Mobile menu button -->
+      <button
+        class="menu-button"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-navigation"
+      >
+        <img
+          class="nav-icon"
+          src="assets/Menu.png"
+          alt=""
+          aria-hidden="true"
+        >
+      </button>
+
+    </div>
+  </header>
+
+  <!-- Mobile navigation -->
+  <nav
+    class="mobile-navigation"
+    id="mobile-navigation"
+    aria-label="Mobile navigation"
+    hidden
+  >
+    <a href="index.html">
+      Home
+    </a>
+
+    <a href="listings.html">
+      Browse Listings
+    </a>
+
+    <a
+      href="favorites.html"
+      aria-current="page"
+    >
+      Saved Listings
+    </a>
+  </nav>
+
+  <!-- Main content -->
+
+  <main class="favorites-page">
+
+    <!-- Back link -->
+    <a
+      class="back-link"
+      href="index.html"
+    >
+      <span aria-hidden="true">
+        &lsaquo;
+      </span>
+
+      Back to Home
+    </a>
+
+    <!-- Page heading -->
+    <header class="page-heading">
+
+      <h1>Saved Listings</h1>
+
+      <p>
+        Your saved housing options
+      </p>
 
     </header>
 
+    <!-- Loading message -->
+    <p
+      class="loading-message"
+      id="loading-message"
+      role="status"
+      aria-live="polite"
+    >
+      Loading your saved listings...
+    </p>
+
     
+    <section
+      class="favorites-grid"
+      id="favorites-grid"
+      aria-label="Saved housing listings"
+    ></section>
+
+    <!-- Empty state -->
+    <section
+      class="empty-state"
+      id="empty-state"
+      hidden
+    >
+      <div
+        class="empty-heart"
+        aria-hidden="true"
+      >
+        <img
+          class="empty-heart-icon"
+          src="assets/Heart.png"
+          alt=""
+        >
+      </div>
+
+      <h2>No saved listings yet</h2>
+
+      <p>
+        Save properties you like and they will appear here.
+      </p>
+
+      <a
+        class="browse-button"
+        href="listings.html"
+      >
+        Browse Listings
+      </a>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+
+  <footer class="site-footer">
+
+    <!-- Footer brand -->
+    <div class="footer-brand">
+
+      <strong>SafeStay</strong>
+      <span>Safe. Furnished. Yours</span>
+
+      <!-- Social media icons -->
+      <div
+        class="socials"
+        aria-label="Social media links"
+      >
+
+        <a
+          class="social-icon"
+          href="#"
+          aria-label="SafeStay on X"
+        >
+          <img
+            src="assets/X.png"
+            alt=""
+            aria-hidden="true"
+          >
+        </a>
+
+        <a
+          class="social-icon"
+          href="#"
+          aria-label="SafeStay on LinkedIn"
+        >
+          <img
+            src="assets/Linkedin.png"
+            alt=""
+            aria-hidden="true"
+          >
+        </a>
+
+        <a
+          class="social-icon"
+          href="#"
+          aria-label="SafeStay on Instagram"
+        >
+          <img
+            src="assets/Instagram.png"
+            alt=""
+            aria-hidden="true"
+          >
+        </a>
+
+        <a
+          class="social-icon"
+          href="#"
+          aria-label="SafeStay on Facebook"
+        >
+          <img
+            src="assets/Facebook.png"
+            alt=""
+            aria-hidden="true"
+          >
+        </a>
 
-    <main>
+      </div>
+    </div>
 
-        <section id="favoritesContainer">
+    <!-- Home links -->
+    <div class="footer-column">
 
-            
+      <h2>Home</h2>
 
-        </section>
+      <a href="listings.html">
+        Property Search
+      </a>
 
-        <div class="favorites-buttons">
+      <a href="#">
+        List Your Property
+      </a>
 
-            <a href="listings.html" class="back-button">
+      <a href="#">
+        Testimonials
+      </a>
 
-                ← Continue Browsing
+    </div>
 
-            </a>
+    <!-- Support links -->
+    <div class="footer-column">
 
-            <button id="clearFavorites">
+      <h2>Support</h2>
 
-                Clear All Saved Listings
+      <a href="#">
+        Help Center
+      </a>
 
-            </button>
+      <a href="#">
+        Q&amp;A
+      </a>
 
-        </div>
+      <a href="#">
+        Feedback
+      </a>
 
-    </main>
+    </div>
 
-    <footer>
+    <!-- Contact information -->
+    <div class="footer-column contact">
 
-        <p>
+      <h2>Contact Us</h2>
 
-            © 2026 SafeStay
+      <a href="tel:1234567890">
 
-        </p>
+        <img
+          class="contact-icon"
+          src="assets/Phone.png"
+          alt=""
+          aria-hidden="true"
+        >
 
-    </footer>
+        <span>(123) 456-7890</span>
+      </a>
 
-    <script>
+      <a href="mailto:support@safestay.com">
 
-        const container =
-            document.getElementById("favoritesContainer");
+        <img
+          class="contact-icon"
+          src="assets/Letter.png"
+          alt=""
+          aria-hidden="true"
+        >
 
-        let favorites =
-            JSON.parse(localStorage.getItem("favorites")) || [];
+        <span>support@safestay.com</span>
+      </a>
 
-        function displayFavorites() {
-
-            container.innerHTML = "";
-
-            if (favorites.length === 0) {
-
-                container.innerHTML = `
-
-                    <div class="empty-favorites">
-
-                        <h2>No Saved Listings</h2>
-
-                        <p>
-
-                            You haven't saved any housing listings yet.
-
-                        </p>
-
-                        <a href="listings.html" class="hero-button">
-
-                            Browse Listings
-
-                        </a>
-
-                    </div>
-
-                `;
-
-                return;
-
-            }
-
-            favorites.forEach((listing, index) => {
-
-                container.innerHTML += `
-
-                <div class="card">
-
-                    <img
-                        src="${listing.image}"
-                        alt="${listing.title}">
-
-                    <div class="card-content">
-
-                        <h3>${listing.title}</h3>
-
-                        <p>
-
-                            <strong>Location:</strong>
-
-                            ${listing.location}
-
-                        </p>
-
-                        <p>
-
-                            <strong>Price:</strong>
-
-                            $${listing.price}/month
-
-                        </p>
-
-                        <p>
-
-                            <strong>Property:</strong>
-
-                            ${listing.propertyType}
-
-                        </p>
-
-                        <p>
-
-                            <strong>Lease:</strong>
-
-                            ${listing.leaseLength}
-
-                        </p>
-
-                        <p>
-
-                            ⭐ Safe Neighborhood
-
-                        </p>
-
-                        <div class="card-buttons">
-
-                            <button
-                                onclick="viewListing(${index})">
-
-                                View Details
-
-                            </button>
-
-                            <button
-                                onclick="removeFavorite(${index})">
-
-                                Remove
-
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                `;
-
-            });
-
-        }
-
-        function removeFavorite(index) {
-
-            favorites.splice(index, 1);
-
-            localStorage.setItem(
-                "favorites",
-                JSON.stringify(favorites)
-            );
-
-            displayFavorites();
-
-        }
-
-        function viewListing(index) {
-
-            localStorage.setItem(
-                "selectedListing",
-                JSON.stringify(favorites[index])
-            );
-
-            window.location.href = "details.html";
-
-        }
-
-        document
-            .getElementById("clearFavorites")
-            .addEventListener("click", () => {
-
-                if (confirm("Clear all saved listings?")) {
-
-                    localStorage.removeItem("favorites");
-
-                    favorites = [];
-
-                    displayFavorites();
-
-                }
-
-            });
-
-        displayFavorites();
-
-    </script>
+    </div>
+  </footer>
 
 </body>
-
 </html>
