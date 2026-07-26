@@ -100,11 +100,11 @@
   }
   
   .brand small,
-  .footer-brand > span {
-    margin-top: 7px;
-    color: #9ba5b6;
-    font-size: 14px;
-  }
+.footer-brand > span {
+  margin-top: 7px;
+  color: #53637a;
+  font-size: 14px;
+}
   
   .logo-mark {
     width: 40px;

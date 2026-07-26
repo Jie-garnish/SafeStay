@@ -102,10 +102,9 @@ img {
 
 .brand small,
 .footer-brand > span {
-  margin-top: 8px;
-  color: #9ba5b6;
-  font-size: 16px;
-  letter-spacing: 0.2px;
+  margin-top: 7px;
+  color: #53637a;
+  font-size: 14px;
 }
 
 .logo-mark {
